@@ -10,7 +10,7 @@
     "start": "ember server",
     "build": "ember build",
     "test": "ember test",
-    "prepublish": "gem install bundler; bundle install"
+    "prepublish": "gem install bundler && bundle install"
   },
   "repository": "https://github.com/stefanpenner/ember-cli",
   "engines": {
