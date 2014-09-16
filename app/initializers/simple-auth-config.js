@@ -18,8 +18,8 @@ var FacebookAuthenticator = Base.extend({
           Ember.run(function() {
             resolve({ accessToken: fbResponse.authResponse.accessToken });
           });
-        } else if (fbResponse.status === 'not_authorized') {
-          reject();
+        // } else if (fbResponse.status === 'not_authorized') {
+        //   reject();
         } else {
           FB.login(function(fbResponse) {
             if (fbResponse.authResponse) {
@@ -29,15 +29,8 @@ var FacebookAuthenticator = Base.extend({
             } else {
               reject();
             }
-          });
+          }, {scope: 'user_friends'});
         }
-      });
-    });
-  },
-  invalidate: function() {
-    return new Ember.RSVP.Promise(function(resolve, reject) {
-      FB.logout(function(response) {
-        Ember.run(resolve);
       });
     });
   }

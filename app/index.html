@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/once-upon-a-time.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
     <script>
@@ -21,6 +21,9 @@
       FB.init({ appId: '1480716545536757' });
       window.OnceUponATimeENV = {{ENV}};
       window.ENV = window.OnceUponATimeENV;
+      window.ENV['simple-auth'] = {
+        store: 'simple-auth-session-store:local-storage'
+      }
       window.EmberENV = window.OnceUponATimeENV.EmberENV;
     </script>
     <script src="assets/vendor.js"></script>
