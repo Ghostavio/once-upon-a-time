@@ -9,12 +9,18 @@
 
     {{BASE_TAG}}
 
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/once-upon-a-time.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
   </head>
   <body>
     <script>
+      // setup Facebook SDK
+      FB.init({ appId: '1480716545536757' });
       window.OnceUponATimeENV = {{ENV}};
+      window.ENV = window.OnceUponATimeENV;
       window.EmberENV = window.OnceUponATimeENV.EmberENV;
     </script>
     <script src="assets/vendor.js"></script>
