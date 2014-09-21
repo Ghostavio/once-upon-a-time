@@ -8,6 +8,7 @@ Router.map(function() {
   this.route('login');
   this.route('application');
   this.route('secret');
+  this.route('permission');
 });
 
 export default Router;

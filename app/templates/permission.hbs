@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1>This app is missing Facebook permissions.</h1>
+  <p>You're missing the following permissions:</p>
+  <ul>
+    {{#each permission in content}}
+      <li>{{permission.name}}</li>
+    {{/each}}
+  </ul>
+  <div class="alert alert-info">
+    <a {{ action 'authenticateWithFacebook' }} class="alert-link" style="cursor: pointer;">Click here to add the missing permission.</a>
+  </div>
+</div>
