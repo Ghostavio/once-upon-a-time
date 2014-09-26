@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Base from 'simple-auth/authenticators/base';
 
 // the custom authenticator that initiates the authentication process with Facebook
@@ -18,7 +19,7 @@ var FacebookAuthenticator = Base.extend({
           permissions = 'email,public_profile,user_friends',
           permissionsArray = permissions.split(','),
           facebookLogin = function(permissions,resetLocalStorage) {
-            FB.login(function(fbResponse) {
+            window.FB.login(function(fbResponse) {
               if (fbResponse.authResponse) {
                 Ember.run(function() {
                   resolve({ accessToken: fbResponse.authResponse.accessToken });
@@ -44,9 +45,8 @@ var FacebookAuthenticator = Base.extend({
             return map;
           },
           handlePermission = function(permissionsArray) {
-            console.log('handlePermission');
             var goToMissingPermissionPage = false;
-            FB.api(
+            window.FB.api(
               "/me/permissions/",
               function (response) {
                 if (response && !response.error) {
@@ -70,7 +70,7 @@ var FacebookAuthenticator = Base.extend({
       if(invokeDialog) {
         facebookLogin(permissions, true);
       } else {
-        FB.getLoginStatus(function(fbResponse) {
+        window.FB.getLoginStatus(function(fbResponse) {
           if (fbResponse.status === 'connected') {
             connected = true;
             Ember.run(function() {
@@ -93,7 +93,7 @@ var FacebookAuthenticator = Base.extend({
 export default {
   name: 'authentication',
   before: 'simple-auth',
-  initialize: function(container, application) {
+  initialize: function(container) {
     // register the Facebook and Google+ authenticators so the session can find them
     container.register('authenticator:facebook', FacebookAuthenticator);
     // container.register('authenticator:googleplus', App.GooglePlusAuthenticator);
