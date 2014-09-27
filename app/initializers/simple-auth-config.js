@@ -15,8 +15,8 @@ var FacebookAuthenticator = Base.extend({
   authenticate: function(router) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       var connected,
-          invokeDialog = router.controllerFor('permission').get('invokeDialog'),
-          permissions = 'email,public_profile,user_friends',
+          invokeDialog = router.controllerFor('login').get('invokeDialog'),
+          permissions = 'email,public_profile,user_friends,user_likes',
           permissionsArray = permissions.split(','),
           facebookLogin = function(permissions,resetLocalStorage) {
             window.FB.login(function(fbResponse) {
@@ -61,14 +61,15 @@ var FacebookAuthenticator = Base.extend({
                     }
                   });
                   if(goToMissingPermissionPage) {
-                    router.transitionTo('permission');
+                    // router.transitionTo('permission');
+                    facebookLogin(permissions, true);
                   }
                 }
               }
             );
           };
       if(invokeDialog) {
-        facebookLogin(permissions, true);
+        facebookLogin(permissions);
       } else {
         window.FB.getLoginStatus(function(fbResponse) {
           if (fbResponse.status === 'connected') {
@@ -76,14 +77,12 @@ var FacebookAuthenticator = Base.extend({
             Ember.run(function() {
               resolve({ accessToken: fbResponse.authResponse.accessToken });
             });
-          // } else if (fbResponse.status === 'not_authorized') {
-          //   reject();
           } else {
             facebookLogin(permissions);
           }
         });
         if(connected) {
-          handlePermission(permissionsArray);
+          handlePermission(permissionsArray, true);
         }
       }
     });
