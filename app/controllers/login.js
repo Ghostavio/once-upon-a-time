@@ -3,7 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   init: function() {
     this._super();
-    var permissions = 'email,public_profile,user_friends,user_likes',
+    // TODO: add this permissions to ENV variables
+    var permissions = 'email,public_profile,user_friends',
         permissionsArray = permissions.split(','),
         self = this,
         permissionMapper = function(array) {

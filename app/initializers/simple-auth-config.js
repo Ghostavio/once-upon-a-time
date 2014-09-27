@@ -16,7 +16,7 @@ var FacebookAuthenticator = Base.extend({
     return new Ember.RSVP.Promise(function(resolve, reject) {
       var connected,
           invokeDialog = router.controllerFor('login').get('invokeDialog'),
-          permissions = 'email,public_profile,user_friends,user_likes',
+          permissions = 'email,public_profile,user_friends',
           permissionsArray = permissions.split(','),
           facebookLogin = function(permissions,resetLocalStorage) {
             window.FB.login(function(fbResponse) {
