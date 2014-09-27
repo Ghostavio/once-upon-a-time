@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+    firebase_instance: 'once-upon-a-time',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
