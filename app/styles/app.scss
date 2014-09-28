@@ -3,10 +3,27 @@ html, body {
   padding: 0;
 }
 
-.container {
-  margin-top: 25px;
+.canvas {
+  width: 80%;
+  margin: 10% auto;
+  h1 {
+    font-family: 'Alex Brush', cursive;
+    text-align: center;
+    font-size: 42px;
+    transform: rotate(-8deg);
+    margin: 0 0 4%;
+    transition: all 500ms cubic-bezier(0.580, 0.005, 0.230, 1.000);
+    &:hover {
+      transform: rotate(8deg);
+    }
+  }
 }
 
-.padding-right-15 {
-  padding-right: 15px !important;
+.btn {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.btn-login, .btn-settings {
+  background-color: #C1C4D5;
 }

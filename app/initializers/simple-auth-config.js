@@ -75,7 +75,9 @@ var FacebookAuthenticator = Base.extend({
           if (fbResponse.status === 'connected') {
             connected = true;
             Ember.run(function() {
-              resolve({ accessToken: fbResponse.authResponse.accessToken });
+              var accessToken = fbResponse.authResponse.accessToken;
+              resolve({ accessToken: accessToken });
+              window.FB.api('/me/', function(r) { router.controllerFor('user').login(r.email, accessToken); });
             });
           } else {
             facebookLogin(permissions);

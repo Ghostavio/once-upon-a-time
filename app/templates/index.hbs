@@ -1,8 +1,10 @@
-<div class="page-header">
-  <h1>Once Upon a Time</h1>
-</div>
-{{#unless session.isAuthenticated}}
-  <div class="alert alert-info">
-    You can {{#link-to 'login' class="alert-link"}}login{{/link-to}} with your <i class="fa fa-facebook-square"></i> Facebook account.
-  </div>
-{{/unless}}
+<h1>Once Upon a Time</h1>
+{{#link-to 'secret' classNames='btn btn-success play'}}
+  Play
+{{/link-to}}
+{{#if session.isAuthenticated}}
+  <button {{ action 'invalidateSession' }} class="btn btn-danger">Logout</button>
+{{else}}
+    {{#link-to 'login' class="btn btn-login"}}Login{{/link-to}}
+{{/if}}
+<button class="btn btn-settings">Settings</button>
