@@ -1,27 +1,6 @@
-{{!-- <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-header">
-    {{#link-to 'index' classNames='navbar-brand'}}
-      Home
-    {{/link-to}}
-  </div>
-  <div class="collapse navbar-collapse navbar-ex5-collapse padding-right-15">
-    <ul class="nav navbar-nav">
-      {{#link-to 'secret' tagName='li'}}
-        <a style="cursor: pointer">Protected Page</a>
-      {{/link-to}}
-    </ul>
-    {{! display logout button when the session is authenticated, login button otherwise }}
-    {{#if session.isAuthenticated}}
-      <button {{ action 'invalidateSession' }} class="btn btn-danger navbar-btn navbar-right">Logout</button>
-    {{else}}
-      {{#link-to 'login' class="btn btn-success navbar-btn navbar-right"}}Login{{/link-to}}
-    {{/if}}
-  </div>
-</nav>
-<div class="container">
-  {{outlet}}
-</div> --}}
-
+{{!-- {{#unless "controllers.application"}} --}}
+{{partial "header"}}
+{{!-- {{/unless}} --}}
 <div class="canvas">
   {{outlet}}
 </div>
