@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+  user    : DS.belongsTo("user", { async: true }),
   name    : DS.attr('string'),
-  email   : DS.attr('string'),
-  friends : DS.hasMany("user", { async: true })
+  members : DS.hasMany("user")
 });

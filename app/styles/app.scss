@@ -1,29 +1,125 @@
+// These are in Pixels, wil be converted to ems by Sass
+$mq-xlarge : 1600;
+$mq-large  : 1024;
+$mq-medium : 760;
+$mq-small  : 480;
+
+// This is a mixing borrowed from @AhmedElGabri and his awesome framework Blank
+// https://github.com/ahmedelgabri/blank/blob/master/scss/utils/_mixins.scss#L247-L257
+@mixin mq( $m, $point ) {
+  @media screen and ( $m: ($point / 16) + em ) {
+    @content;
+  }
+}
+
 html, body {
   margin: 0;
   padding: 0;
 }
 
+.navbar:before, .navbar-header:before, .navbar-collapse:before,
+.navbar:after, .navbar-header:after, .navbar-collapse:after {
+  display: none !important;
+}
+
+.padding-right-15 {
+  padding-right: 15px !important;
+}
+
+.float-right {
+  float: right;
+}
+
+li.no-style {
+  list-style-type: none;
+}
+
 .canvas {
   width: 80%;
   margin: 90px auto;
+  @include mq(min-width, $mq-large) {
+    width: 50%;
+  }
   h1 {
-    font-family: 'Alex Brush', cursive;
+    // font-family: 'Alex Brush', cursive;
+    font-family: Consolas, monospace;
     text-align: center;
-    font-size: 42px;
-    transform: rotate(-8deg);
-    margin: 0 0 4%;
-    transition: all 500ms cubic-bezier(0.580, 0.005, 0.230, 1.000);
+    font-size: 200%;
+    position: relative;
+    // transform: rotate(-8deg);
+    margin: 0 auto 4%;
+    width: 269px;
+    @include mq(min-width, $mq-large) {
+      font-size: 250%;
+      width: 337px;
+    }
+    @include mq(max-width, $mq-small) {
+      font-size: 190%;
+      width: 256px;
+    }
+    // transition: all 500ms cubic-bezier(0.580, 0.005, 0.230, 1.000);
     &:hover {
-      transform: rotate(8deg);
+      // transform: rotate(8deg);
+    }
+    span {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 269px;
+      @include mq(min-width, $mq-large) {
+        width: 337px;
+      }
+      @include mq(max-width, $mq-small) {
+        width: 256px;
+      }
+      background: white; /* same as background */
+
+      box-sizing: border-box;
+
+      animation: typing 2.4s steps(16, end); /* # of steps = # of characters */
+      animation-delay: .8s;
+      animation-fill-mode: forwards;
     }
   }
 }
 
-.btn {
+.btn-full {
   width: 100%;
   margin: 20px 0;
+  height: 50px;
 }
 
 .btn-login, .btn-settings {
   background-color: #C1C4D5;
+}
+
+.friend-name {
+  display: table;
+  background-color: #BABACA;
+  padding: 4px 6px;
+  border-radius: 5px;
+  line-height: 30px;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.selected-friend {
+  background-color: green;
+}
+
+@keyframes typing {
+  from { width: 269px; }
+  to { width: 0; }
+}
+@include mq(min-width, $mq-large) {
+  @keyframes typing {
+    from { width: 337px; }
+    to { width: 0; }
+  }
+}
+@include mq(max-width, $mq-small) {
+  @keyframes typing {
+    from { width: 256px; }
+    to { width: 0; }
+  }
 }

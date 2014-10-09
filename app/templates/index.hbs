@@ -1,10 +1,10 @@
-<h1>Once Upon a Time</h1>
-{{#link-to 'secret' classNames='btn btn-success play'}}
+<h1>Once Upon a Time<span>&nbsp;</span></h1>
+{{#link-to 'room' classNames='btn btn-full btn-success play' tagName='button'}}
   Play
 {{/link-to}}
 {{#if session.isAuthenticated}}
-  <button {{ action 'invalidateSession' }} class="btn btn-danger">Logout</button>
+  <button {{ action 'invalidateSession' }} class="btn btn-full btn-danger">Logout</button>
 {{else}}
-    {{#link-to 'login' class="btn btn-login"}}Login{{/link-to}}
+    {{#link-to 'login' class="btn btn-full btn-login"}}Login{{/link-to}}
 {{/if}}
-<button class="btn btn-settings">Settings</button>
+<button class="btn btn-full btn-settings">Settings</button>

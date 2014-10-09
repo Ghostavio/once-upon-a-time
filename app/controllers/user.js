@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   @type {User}
   @default null
   */
+  needs: ['friend'],
   currentUser: null,
   permissions: 'email,public_profile,user_friends',
 
@@ -23,7 +24,7 @@ export default Ember.Controller.extend({
   */
   login: function(email, token) {
     if (email === undefined) {
-      return this._loginActiveSession(email, token);
+      return this._loginActiveSession(token);
     } else {
       return this._loginWithCredentials(email, token);
     }
@@ -132,7 +133,7 @@ export default Ember.Controller.extend({
               self.createNewUser(email);
             });
             window.ga('set', '&uid', user.id); // Set the user ID using signed-in user_id.
-
+            self.get('controllers.friend').fetchFriends(appUser);
             resolve(appUser);
           }
         });
@@ -169,8 +170,17 @@ export default Ember.Controller.extend({
           if (user) {
             var appUser = self.store.find('user', user.id).then(function(value) {
               self.set('currentUser', value);
+              self.get('controllers.friend').fetchFriends(value);
               return value;
             });
+            // window.FB.api('/me/friends/', function(r) {
+            //   r.data.forEach(function(i) {
+            //     debugger;
+            //     appUser.set('friend',i.id);
+            //     appUser.save();
+            //     appUser.set('friend', null);
+            //   });
+            // });
 
             resolve(appUser);
           }

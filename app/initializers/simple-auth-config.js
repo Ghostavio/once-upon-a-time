@@ -18,11 +18,17 @@ var FacebookAuthenticator = Base.extend({
           invokeDialog = router.controllerFor('login').get('invokeDialog'),
           permissions = 'email,public_profile,user_friends',
           permissionsArray = permissions.split(','),
+          fireAuth = function(token) {
+            window.FB.api('/me/', function(r) { router.controllerFor('user').login(r.email, token); });
+          },
           facebookLogin = function(permissions,resetLocalStorage) {
             window.FB.login(function(fbResponse) {
               if (fbResponse.authResponse) {
                 Ember.run(function() {
-                  resolve({ accessToken: fbResponse.authResponse.accessToken });
+                  var accessToken = fbResponse.authResponse.accessToken,
+                      userID = fbResponse.authResponse.userID;
+                  resolve({ accessToken: accessToken, userID: userID });
+                  fireAuth(accessToken);
                   connected = true;
                   if(resetLocalStorage) {
                     router.controllerFor('permission').get('model').forEach(function(i) {
@@ -75,9 +81,10 @@ var FacebookAuthenticator = Base.extend({
           if (fbResponse.status === 'connected') {
             connected = true;
             Ember.run(function() {
-              var accessToken = fbResponse.authResponse.accessToken;
-              resolve({ accessToken: accessToken });
-              window.FB.api('/me/', function(r) { router.controllerFor('user').login(r.email, accessToken); });
+              var accessToken = fbResponse.authResponse.accessToken,
+                  userID = fbResponse.authResponse.userID;
+              resolve({ accessToken: accessToken, userID: userID });
+              fireAuth(accessToken);
             });
           } else {
             facebookLogin(permissions);

@@ -3,7 +3,8 @@
     "document": true,
     "window": true,
     "-Promise": true,
-    "OnceUponATimeENV": true
+    "OnceUponATimeENV": true,
+    "lodash": true
   },
   "browser" : true,
   "boss" : true,

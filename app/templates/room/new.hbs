@@ -1,0 +1,20 @@
+<form {{action "createRoom" on="submit"}}>
+  <div class="input">
+    {{input name='name' value=name placeholder='Name of the Room'}}
+  </div>
+  <div class="input">
+    <label for="score">Invite Friends</label>
+    <ul class="friends-list">
+      {{#each content.friends}}
+        {{!-- <li class="friend-name no-style" {{action "toggleFriend" this}}> --}}
+        {{#view 'friend-select' friendBinding="this"}}
+          {{name}}
+        {{/view}}
+        {{!-- </li> --}}
+      {{/each}}
+    </ul>
+  </div>
+  <div class="actions">
+    <button type="submit">Create Room</button>
+  </div>
+</form>

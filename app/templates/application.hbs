@@ -1,6 +1,6 @@
-{{!-- {{#unless "controllers.application"}} --}}
-{{partial "header"}}
-{{!-- {{/unless}} --}}
+{{#unless "controller.dontShowHeader"}}
+  {{partial "header"}}
+{{/unless}}
 <div class="canvas">
   {{outlet}}
 </div>

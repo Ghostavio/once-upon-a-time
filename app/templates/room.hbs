@@ -1,0 +1,8 @@
+<h2>Your Rooms</h2>
+<ul>
+  {{#each room in content}}
+    <li>{{room.name}}</li>
+  {{else}}
+    <li class="no-style">You don't have any room : (</li>
+  {{/each}}
+</ul>

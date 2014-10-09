@@ -3,9 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('controller:user', 'UserController', {
+moduleFor('controller:friend', 'FriendController', {
   // Specify the other units that are required for this test.
-  needs: ['controller:friend']
+  needs: ['controller:user']
 });
 
 // Replace this with your real tests.
